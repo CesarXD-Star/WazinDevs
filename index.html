@@ -164,9 +164,14 @@
             margin: 0;
             color: #ffffff;
         }
+        
+        /* Stats Info & Latest Download */
         .stats-info {
             font-size: 14px;
             color: #a0aec0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         .stats-info span {
             color: #4CAF50;
@@ -175,6 +180,22 @@
             padding: 4px 10px;
             border-radius: 4px;
             border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+        .latest-download-btn {
+            background-color: #3182ce;
+            color: #ffffff;
+            padding: 5px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .latest-download-btn:hover {
+            background-color: #2b6cb0;
+        }
+        .latest-download-btn:active {
+            transform: scale(0.95);
         }
 
         /* Versions List */
@@ -284,12 +305,25 @@
                     <div class="content-header-box">
                         <h2 class="content-title">Downloads for Rucks - Generation 1</h2>
                         <div class="stats-info">
-                            Latest Version: <span>0.7.99</span>
+                            Latest Version: <span>0.8.117</span>
+                            <a href="http://adfoc.us/8769421000446064" class="latest-download-btn" target="_blank">Download</a>
                         </div>
                     </div>
                     
                     <div class="version-list">
                         
+                        <!-- 0.8.117 -->
+                        <div class="version-card">
+                            <div class="version-left">
+                                <img src="icon.png" alt="R Icon">
+                                <div class="version-info">
+                                    <p class="version-number">0.8.117</p>
+                                    <p class="version-desc">News: Amethyst Tools And Amethyst Armor</p>
+                                </div>
+                            </div>
+                            <a href="http://adfoc.us/8769421000446064" class="download-btn" target="_blank">Download</a>
+                        </div>
+
                         <!-- 0.7.99 -->
                         <div class="version-card">
                             <div class="version-left">
