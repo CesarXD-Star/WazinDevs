@@ -15,7 +15,6 @@
             margin: 0;
             padding: 0;
         }
-
         /* --- SCREEN 1: PROJECTS --- */
         #projects-view {
             display: flex;
@@ -57,12 +56,18 @@
             border-color: #3182ce;
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
+        .project-card.isterius:hover {
+            border-color: #c084fc;
+            box-shadow: 0 10px 20px rgba(192, 132, 252, 0.2);
+        }
         .project-card img {
             width: 140px;
             height: 140px;
             image-rendering: pixelated;
             border-radius: 6px;
             margin-bottom: 20px;
+            object-fit: cover;
+            background: #000;
         }
         .project-name {
             font-size: 22px;
@@ -85,17 +90,18 @@
             padding: 6px 14px;
             border-radius: 20px;
         }
-
-        /* --- SCREEN 2: RUCKS --- */
-        #rucks-view {
+        .project-tag.isterius-tag {
+            background-color: #7c3aed;
+        }
+        /* --- DETAIL VIEWS --- */
+        #rucks-view,
+        #isterius-view {
             display: none;
         }
         .main-container {
             display: flex;
             min-height: 100vh;
         }
-
-        /* Sidebar */
         .sidebar {
             width: 280px;
             background-color: #1a202c;
@@ -129,8 +135,9 @@
             color: #ffffff;
             font-weight: bold;
         }
-
-        /* Content Area */
+        .sidebar-item.active.isterius-active {
+            background-color: #7c3aed;
+        }
         .content {
             flex-grow: 1;
             padding: 50px 60px;
@@ -149,7 +156,6 @@
         .back-btn:hover {
             color: #3182ce;
         }
-        
         .content-header-box {
             display: flex;
             justify-content: space-between;
@@ -157,6 +163,8 @@
             border-bottom: 1px solid #2d3748;
             padding-bottom: 20px;
             margin-bottom: 35px;
+            flex-wrap: wrap;
+            gap: 12px;
         }
         .content-title {
             font-size: 28px;
@@ -164,14 +172,13 @@
             margin: 0;
             color: #ffffff;
         }
-        
-        /* Stats Info & Latest Download */
         .stats-info {
             font-size: 14px;
             color: #a0aec0;
             display: flex;
             align-items: center;
             gap: 12px;
+            flex-wrap: wrap;
         }
         .stats-info span {
             color: #4CAF50;
@@ -194,11 +201,15 @@
         .latest-download-btn:hover {
             background-color: #2b6cb0;
         }
+        .latest-download-btn.isterius-btn {
+            background-color: #7c3aed;
+        }
+        .latest-download-btn.isterius-btn:hover {
+            background-color: #6d28d9;
+        }
         .latest-download-btn:active {
             transform: scale(0.95);
         }
-
-        /* Versions List */
         .version-list {
             display: flex;
             flex-direction: column;
@@ -215,6 +226,8 @@
             border: 1px solid #2d3748;
             justify-content: space-between;
             transition: border-color 0.2s;
+            gap: 16px;
+            flex-wrap: wrap;
         }
         .version-card:hover {
             border-color: #4a5568;
@@ -229,6 +242,8 @@
             height: 56px;
             image-rendering: pixelated;
             border-radius: 4px;
+            object-fit: cover;
+            background: #000;
         }
         .version-info {
             display: flex;
@@ -245,8 +260,6 @@
             color: #a0aec0;
             margin: 0;
         }
-
-        /* Download Button */
         .download-btn {
             background-color: #3182ce;
             color: #ffffff;
@@ -261,29 +274,52 @@
         .download-btn:hover {
             background-color: #2b6cb0;
         }
+        .download-btn.isterius-btn {
+            background-color: #7c3aed;
+        }
+        .download-btn.isterius-btn:hover {
+            background-color: #6d28d9;
+        }
         .download-btn:active {
             transform: scale(0.98);
         }
-
         .gen-section {
             display: none;
         }
         .gen-section.active {
             display: block;
         }
+        @media (max-width: 800px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #2d3748;
+            }
+            .content {
+                padding: 30px 20px;
+            }
+        }
     </style>
 </head>
 <body>
-
     <!-- SCREEN 1: PROJECTS -->
     <div id="projects-view">
         <h1 class="header-title">Projects</h1>
         <div class="projects-grid">
-            <div class="project-card" onclick="showDownloads()">
+            <div class="project-card" onclick="showRucks()">
                 <img src="icon.png" alt="Rucks Logo">
                 <div class="project-name">Rucks</div>
                 <div class="project-desc">Official downloads for Rucks generations and releases.</div>
                 <span class="project-tag">View Downloads</span>
+            </div>
+            <div class="project-card isterius" onclick="showIsterius()">
+                <img src="isterius.ico" alt="Isterius Client Logo" onerror="this.src='icon.png'">
+                <div class="project-name">Isterius Client</div>
+                <div class="project-desc">Offline Minecraft launcher for Windows. Installs to C:\IsteriusClient with desktop shortcut.</div>
+                <span class="project-tag isterius-tag">View Downloads</span>
             </div>
         </div>
     </div>
@@ -291,16 +327,12 @@
     <!-- SCREEN 2: RUCKS -->
     <div id="rucks-view">
         <div class="main-container">
-            <!-- Sidebar -->
             <div class="sidebar">
                 <div class="sidebar-title">Rucks Generations</div>
                 <div class="sidebar-item active" onclick="changeGeneration('gen1', this)">Generation 1</div>
             </div>
-
-            <!-- Content -->
             <div class="content">
                 <span class="back-btn" onclick="showProjects()">← Back to Projects</span>
-                
                 <div id="gen1" class="gen-section active">
                     <div class="content-header-box">
                         <h2 class="content-title">Downloads for Rucks - Generation 1</h2>
@@ -309,10 +341,7 @@
                             <a href="http://adfoc.us/8769421000453026" class="latest-download-btn" target="_blank">Download</a>
                         </div>
                     </div>
-                    
                     <div class="version-list">
-                        
-                        <!-- 0.9.150 -->
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="icon.png" alt="R Icon">
@@ -323,8 +352,6 @@
                             </div>
                             <a href="http://adfoc.us/8769421000453026" class="download-btn" target="_blank">Download</a>
                         </div>
-
-                        <!-- 0.8.117 -->
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="icon.png" alt="R Icon">
@@ -335,8 +362,6 @@
                             </div>
                             <a href="http://adfoc.us/8769421000446064" class="download-btn" target="_blank">Download</a>
                         </div>
-
-                        <!-- 0.7.99 -->
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="icon.png" alt="R Icon">
@@ -347,8 +372,6 @@
                             </div>
                             <a href="http://adfoc.us/8769421000434324" class="download-btn" target="_blank">Download</a>
                         </div>
-
-                        <!-- 0.6.81 -->
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="icon.png" alt="R Icon">
@@ -359,8 +382,6 @@
                             </div>
                             <a href="http://adfoc.us/8769421000419168" class="download-btn" target="_blank">Download</a>
                         </div>
-
-                        <!-- 0.5.63 -->
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="icon.png" alt="R Icon">
@@ -371,8 +392,6 @@
                             </div>
                             <a href="http://adfoc.us/8769421000415104" class="download-btn" target="_blank">Download</a>
                         </div>
-
-                        <!-- 0.4.36 Fix -->
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="icon.png" alt="R Icon">
@@ -383,8 +402,6 @@
                             </div>
                             <a href="http://adfoc.us/8769421000415101" class="download-btn" target="_blank">Download</a>
                         </div>
-
-                        <!-- 0.4.36 -->
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="icon.png" alt="R Icon">
@@ -395,8 +412,6 @@
                             </div>
                             <a href="http://adfoc.us/8769421000415045" class="download-btn" target="_blank">Download</a>
                         </div>
-
-                        <!-- 0.3.21 -->
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="icon.png" alt="R Icon">
@@ -407,8 +422,6 @@
                             </div>
                             <a href="http://adfoc.us/8769421000415044" class="download-btn" target="_blank">Download</a>
                         </div>
-
-                        <!-- 0.2.21 -->
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="icon.png" alt="R Icon">
@@ -419,8 +432,6 @@
                             </div>
                             <a href="http://adfoc.us/8769421000415039" class="download-btn" target="_blank">Download</a>
                         </div>
-
-                        <!-- 0.1.16 -->
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="icon.png" alt="R Icon">
@@ -431,34 +442,82 @@
                             </div>
                             <a href="http://adfoc.us/8769421" class="download-btn" target="_blank">Download</a>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPTS GENERALES -->
-    <script>
-        function showDownloads() {
-            document.getElementById('projects-view').style.display = 'none';
-            document.getElementById('rucks-view').style.display = 'block';
-        }
+    <!-- SCREEN 3: ISTERIUS CLIENT -->
+    <div id="isterius-view">
+        <div class="main-container">
+            <div class="sidebar">
+                <div class="sidebar-title">Isterius Client</div>
+                <div class="sidebar-item active isterius-active" onclick="changeIsteriusSection('isterius-releases', this)">Releases</div>
+            </div>
+            <div class="content">
+                <span class="back-btn" onclick="showProjects()">← Back to Projects</span>
+                <div id="isterius-releases" class="gen-section active">
+                    <div class="content-header-box">
+                        <h2 class="content-title">Downloads for Isterius Client</h2>
+                        <div class="stats-info">
+                            Latest Version: <span>1.0.0</span>
+                            <!-- Replace href with your real download link (Mega / MediaFire / adfoc) -->
+                            <a href="https://www.mediafire.com/file/s0e5ozdj3zpr6bb/IsteriusClientSetup.exe/file" class="latest-download-btn isterius-btn" target="_blank">Download</a>
+                        </div>
+                    </div>
+                    <div class="version-list">
+                        <div class="version-card">
+                            <div class="version-left">
+                                <img src="isterius.ico" alt="Isterius Icon" onerror="this.src='icon.png'">
+                                <div class="version-info">
+                                    <p class="version-number">1.0.0</p>
+                                    <p class="version-desc">Windows installer. Installs to C:\IsteriusClient, desktop shortcut, offline launcher, animated HTML banner.</p>
+                                </div>
+                            </div>
+                            <a href="https://www.mediafire.com/file/s0e5ozdj3zpr6bb/IsteriusClientSetup.exe/file" class="download-btn isterius-btn" target="_blank">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        function showProjects() {
+    <script>
+        function hideAllViews() {
+            document.getElementById('projects-view').style.display = 'none';
             document.getElementById('rucks-view').style.display = 'none';
+            document.getElementById('isterius-view').style.display = 'none';
+        }
+        function showProjects() {
+            hideAllViews();
             document.getElementById('projects-view').style.display = 'flex';
         }
-
+        function showRucks() {
+            hideAllViews();
+            document.getElementById('rucks-view').style.display = 'block';
+        }
+        function showIsterius() {
+            hideAllViews();
+            document.getElementById('isterius-view').style.display = 'block';
+        }
         function changeGeneration(genId, element) {
-            const sections = document.querySelectorAll('.gen-section');
-            sections.forEach(sec => sec.classList.remove('active'));
-
-            const items = document.querySelectorAll('.sidebar-item');
-            items.forEach(item => item.classList.remove('active'));
-
+            const root = document.getElementById('rucks-view');
+            root.querySelectorAll('.gen-section').forEach(sec => sec.classList.remove('active'));
+            root.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
             document.getElementById(genId).classList.add('active');
             element.classList.add('active');
+        }
+        function changeIsteriusSection(sectionId, element) {
+            const root = document.getElementById('isterius-view');
+            root.querySelectorAll('.gen-section').forEach(sec => sec.classList.remove('active'));
+            root.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+                item.classList.remove('isterius-active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            element.classList.add('active');
+            element.classList.add('isterius-active');
         }
     </script>
 </body>
