@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wazin Devs - Downloads</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
         body {
             background-color: #121212;
             color: #ffffff;
@@ -15,7 +13,6 @@
             margin: 0;
             padding: 0;
         }
-        /* --- SCREEN 1: PROJECTS --- */
         #projects-view {
             display: flex;
             flex-direction: column;
@@ -90,14 +87,8 @@
             padding: 6px 14px;
             border-radius: 20px;
         }
-        .project-tag.isterius-tag {
-            background-color: #7c3aed;
-        }
-        /* --- DETAIL VIEWS --- */
-        #rucks-view,
-        #isterius-view {
-            display: none;
-        }
+        .project-tag.isterius-tag { background-color: #7c3aed; }
+        #rucks-view, #isterius-view { display: none; }
         .main-container {
             display: flex;
             min-height: 100vh;
@@ -135,9 +126,7 @@
             color: #ffffff;
             font-weight: bold;
         }
-        .sidebar-item.active.isterius-active {
-            background-color: #7c3aed;
-        }
+        .sidebar-item.active.isterius-active { background-color: #7c3aed; }
         .content {
             flex-grow: 1;
             padding: 50px 60px;
@@ -153,9 +142,7 @@
             font-weight: 500;
             transition: color 0.2s;
         }
-        .back-btn:hover {
-            color: #3182ce;
-        }
+        .back-btn:hover { color: #3182ce; }
         .content-header-box {
             display: flex;
             justify-content: space-between;
@@ -188,6 +175,11 @@
             border-radius: 4px;
             border: 1px solid rgba(76, 175, 80, 0.3);
         }
+        .stats-info .dl-count {
+            color: #c084fc;
+            background: rgba(192, 132, 252, 0.12);
+            border-color: rgba(192, 132, 252, 0.35);
+        }
         .latest-download-btn {
             background-color: #3182ce;
             color: #ffffff;
@@ -197,19 +189,14 @@
             font-weight: bold;
             font-size: 12px;
             transition: background-color 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
         }
-        .latest-download-btn:hover {
-            background-color: #2b6cb0;
-        }
-        .latest-download-btn.isterius-btn {
-            background-color: #7c3aed;
-        }
-        .latest-download-btn.isterius-btn:hover {
-            background-color: #6d28d9;
-        }
-        .latest-download-btn:active {
-            transform: scale(0.95);
-        }
+        .latest-download-btn:hover { background-color: #2b6cb0; }
+        .latest-download-btn.isterius-btn { background-color: #7c3aed; }
+        .latest-download-btn.isterius-btn:hover { background-color: #6d28d9; }
+        .latest-download-btn:active { transform: scale(0.95); }
         .version-list {
             display: flex;
             flex-direction: column;
@@ -229,9 +216,7 @@
             gap: 16px;
             flex-wrap: wrap;
         }
-        .version-card:hover {
-            border-color: #4a5568;
-        }
+        .version-card:hover { border-color: #4a5568; }
         .version-left {
             display: flex;
             align-items: center;
@@ -245,20 +230,39 @@
             object-fit: cover;
             background: #000;
         }
-        .version-info {
-            display: flex;
-            flex-direction: column;
-        }
+        .version-info { display: flex; flex-direction: column; gap: 4px; }
         .version-number {
             font-size: 20px;
             font-weight: bold;
-            margin: 0 0 6px 0;
+            margin: 0;
             color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         .version-desc {
             font-size: 14px;
             color: #a0aec0;
             margin: 0;
+        }
+        .badge {
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .badge-release {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.4);
+        }
+        .badge-beta {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.4);
         }
         .download-btn {
             background-color: #3182ce;
@@ -270,42 +274,37 @@
             font-size: 14px;
             transition: background-color 0.2s, transform 0.1s;
             white-space: nowrap;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
         }
-        .download-btn:hover {
-            background-color: #2b6cb0;
-        }
-        .download-btn.isterius-btn {
-            background-color: #7c3aed;
-        }
-        .download-btn.isterius-btn:hover {
-            background-color: #6d28d9;
-        }
-        .download-btn:active {
-            transform: scale(0.98);
-        }
-        .gen-section {
-            display: none;
-        }
-        .gen-section.active {
-            display: block;
+        .download-btn:hover { background-color: #2b6cb0; }
+        .download-btn.isterius-btn { background-color: #7c3aed; }
+        .download-btn.isterius-btn:hover { background-color: #6d28d9; }
+        .download-btn:active { transform: scale(0.98); }
+        .gen-section { display: none; }
+        .gen-section.active { display: block; }
+        .empty-state {
+            color: #a0aec0;
+            font-size: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            border: 1px dashed #2d3748;
+            border-radius: 8px;
+            background: #1a202c;
         }
         @media (max-width: 800px) {
-            .main-container {
-                flex-direction: column;
-            }
+            .main-container { flex-direction: column; }
             .sidebar {
                 width: 100%;
                 border-right: none;
                 border-bottom: 1px solid #2d3748;
             }
-            .content {
-                padding: 30px 20px;
-            }
+            .content { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- SCREEN 1: PROJECTS -->
     <div id="projects-view">
         <h1 class="header-title">Projects</h1>
         <div class="projects-grid">
@@ -318,13 +317,12 @@
             <div class="project-card isterius" onclick="showIsterius()">
                 <img src="isterius.ico" alt="Isterius Client Logo" onerror="this.src='icon.png'">
                 <div class="project-name">Isterius Client</div>
-                <div class="project-desc">Offline Minecraft launcher for Windows. Installs to C:\IsteriusClient with desktop shortcut.</div>
+                <div class="project-desc">Java Minecraft launcher for Windows PC and laptop. Offline play, installs to C:\IsteriusLauncher.</div>
                 <span class="project-tag isterius-tag">View Downloads</span>
             </div>
         </div>
     </div>
 
-    <!-- SCREEN 2: RUCKS -->
     <div id="rucks-view">
         <div class="main-container">
             <div class="sidebar">
@@ -448,35 +446,84 @@
         </div>
     </div>
 
-    <!-- SCREEN 3: ISTERIUS CLIENT -->
     <div id="isterius-view">
         <div class="main-container">
             <div class="sidebar">
                 <div class="sidebar-title">Isterius Client</div>
-                <div class="sidebar-item active isterius-active" onclick="changeIsteriusSection('isterius-releases', this)">Releases</div>
+                <div class="sidebar-item active isterius-active" onclick="changeIsteriusSection('isterius-launchers', this)">Launchers</div>
+                <div class="sidebar-item" onclick="changeIsteriusSection('isterius-mods', this)">Mods / Plugins</div>
             </div>
             <div class="content">
                 <span class="back-btn" onclick="showProjects()">← Back to Projects</span>
-                <div id="isterius-releases" class="gen-section active">
+
+                <!-- LAUNCHERS -->
+                <div id="isterius-launchers" class="gen-section active">
                     <div class="content-header-box">
-                        <h2 class="content-title">Downloads for Isterius Client</h2>
+                        <h2 class="content-title">Isterius Client - Launchers</h2>
                         <div class="stats-info">
-                            Latest Version: <span>1.0.0</span>
-                            <!-- Replace href with your real download link (Mega / MediaFire / adfoc) -->
-                            <a href="https://www.mediafire.com/file/s0e5ozdj3zpr6bb/IsteriusClientSetup.exe/file" class="latest-download-btn isterius-btn" target="_blank">Download</a>
+                            Downloads: <span class="dl-count" id="isterius-total-downloads">0</span>
+                            Latest: <span>1.0.1</span>
+                            <button type="button" class="latest-download-btn isterius-btn"
+                                onclick="trackDownload('1.0.1', 'https://www.mediafire.com/file/6nj16mpbcaoce0k/IsteriusClientSetup_1.0.1.exe/file')">
+                                Download
+                            </button>
                         </div>
                     </div>
                     <div class="version-list">
+                        <!-- 1.0.1 Release -->
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="isterius.ico" alt="Isterius Icon" onerror="this.src='icon.png'">
                                 <div class="version-info">
-                                    <p class="version-number">1.0.0</p>
-                                    <p class="version-desc">Windows installer. Installs to C:\IsteriusClient, desktop shortcut, offline launcher, animated HTML banner.</p>
+                                    <p class="version-number">
+                                        1.0.1
+                                        <span class="badge badge-release">Release</span>
+                                    </p>
+                                    <p class="version-desc">
+                                        Windows installer for PC and laptop. Installs to C:\IsteriusLauncher.
+                                        Session save, required username, AppData\.isterius game data. Recommended.
+                                    </p>
+                                    <p class="version-desc">Downloads: <span class="dl-count" id="dl-1-0-1">0</span></p>
                                 </div>
                             </div>
-                            <a href="https://www.mediafire.com/file/s0e5ozdj3zpr6bb/IsteriusClientSetup.exe/file" class="download-btn isterius-btn" target="_blank">Download</a>
+                            <button type="button" class="download-btn isterius-btn"
+                                onclick="trackDownload('1.0.1', 'https://www.mediafire.com/file/6nj16mpbcaoce0k/IsteriusClientSetup_1.0.1.exe/file')">
+                                Download
+                            </button>
                         </div>
+                        <!-- 1.0 Beta -->
+                        <div class="version-card">
+                            <div class="version-left">
+                                <img src="isterius.ico" alt="Isterius Icon" onerror="this.src='icon.png'">
+                                <div class="version-info">
+                                    <p class="version-number">
+                                        1.0
+                                        <span class="badge badge-beta">Beta</span>
+                                    </p>
+                                    <p class="version-desc">
+                                        Early build with known issues. Prefer 1.0.1 Release unless you need this version.
+                                    </p>
+                                    <p class="version-desc">Downloads: <span class="dl-count" id="dl-1-0">0</span></p>
+                                </div>
+                            </div>
+                            <button type="button" class="download-btn isterius-btn"
+                                onclick="trackDownload('1.0', 'https://www.mediafire.com/file/s0e5ozdj3zpr6bb/IsteriusClientSetup.exe/file')">
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODS / PLUGINS -->
+                <div id="isterius-mods" class="gen-section">
+                    <div class="content-header-box">
+                        <h2 class="content-title">Isterius Client - Mods / Plugins</h2>
+                        <div class="stats-info">
+                            Downloads: <span class="dl-count" id="isterius-mods-downloads">0</span>
+                        </div>
+                    </div>
+                    <div class="empty-state">
+                        No mods or plugins published yet. Check back later.
                     </div>
                 </div>
             </div>
@@ -484,6 +531,9 @@
     </div>
 
     <script>
+        const FIREBASE_DB = "https://isterius-default-rtdb.firebaseio.com";
+        const STATS_PATH = "/download_stats/isterius";
+
         function hideAllViews() {
             document.getElementById('projects-view').style.display = 'none';
             document.getElementById('rucks-view').style.display = 'none';
@@ -500,6 +550,7 @@
         function showIsterius() {
             hideAllViews();
             document.getElementById('isterius-view').style.display = 'block';
+            refreshDownloadStats();
         }
         function changeGeneration(genId, element) {
             const root = document.getElementById('rucks-view');
@@ -519,6 +570,74 @@
             element.classList.add('active');
             element.classList.add('isterius-active');
         }
+
+        function versionKey(ver) {
+            return String(ver).replace(/\./g, '_');
+        }
+
+        function applyStats(stats) {
+            stats = stats || {};
+            const v101 = stats['1_0_1'] || 0;
+            const v10 = stats['1_0'] || 0;
+            const total = (stats.total != null) ? stats.total : (v101 + v10);
+            const elTotal = document.getElementById('isterius-total-downloads');
+            const el101 = document.getElementById('dl-1-0-1');
+            const el10 = document.getElementById('dl-1-0');
+            if (elTotal) elTotal.textContent = total;
+            if (el101) el101.textContent = v101;
+            if (el10) el10.textContent = v10;
+        }
+
+        async function refreshDownloadStats() {
+            try {
+                const res = await fetch(FIREBASE_DB + STATS_PATH + ".json", { cache: "no-store" });
+                if (!res.ok) throw new Error("fetch failed");
+                const data = await res.json();
+                applyStats(data || {});
+            } catch (e) {
+                // Fallback: localStorage only
+                try {
+                    const local = JSON.parse(localStorage.getItem("isterius_dl_stats") || "{}");
+                    applyStats(local);
+                } catch (_) {
+                    applyStats({});
+                }
+            }
+        }
+
+        async function trackDownload(version, url) {
+            const key = versionKey(version);
+            let stats = {};
+            try {
+                const res = await fetch(FIREBASE_DB + STATS_PATH + ".json", { cache: "no-store" });
+                if (res.ok) stats = (await res.json()) || {};
+            } catch (_) {
+                try {
+                    stats = JSON.parse(localStorage.getItem("isterius_dl_stats") || "{}");
+                } catch (__) {
+                    stats = {};
+                }
+            }
+            stats[key] = (stats[key] || 0) + 1;
+            stats.total = (stats.total || 0) + 1;
+            applyStats(stats);
+            try {
+                localStorage.setItem("isterius_dl_stats", JSON.stringify(stats));
+            } catch (_) {}
+            try {
+                await fetch(FIREBASE_DB + STATS_PATH + ".json", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(stats)
+                });
+            } catch (_) {}
+            window.open(url, "_blank");
+        }
+
+        // Preload counters if page reloaded on isterius (rare)
+        document.addEventListener("DOMContentLoaded", function () {
+            // nothing until user opens Isterius
+        });
     </script>
 </body>
 </html>
