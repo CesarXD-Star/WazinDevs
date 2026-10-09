@@ -17,24 +17,37 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 40px 20px 60px;
         }
         .header-title {
             font-size: 36px;
             font-weight: 600;
-            margin-top: 0;
-            margin-bottom: 40px;
+            margin: 0 0 36px 0;
             letter-spacing: 1px;
         }
+        .section-block {
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 40px;
+        }
+        .section-heading {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a0aec0;
+            margin: 0 0 18px 4px;
+            border-left: 3px solid #3182ce;
+            padding-left: 12px;
+        }
+        .section-heading.launchers { border-left-color: #7c3aed; }
         .projects-grid {
             display: flex;
             gap: 30px;
-            justify-content: center;
+            justify-content: flex-start;
             flex-wrap: wrap;
             width: 100%;
-            max-width: 1000px;
         }
         .project-card {
             background-color: #1a202c;
@@ -89,10 +102,7 @@
         }
         .project-tag.isterius-tag { background-color: #7c3aed; }
         #rucks-view, #isterius-view { display: none; }
-        .main-container {
-            display: flex;
-            min-height: 100vh;
-        }
+        .main-container { display: flex; min-height: 100vh; }
         .sidebar {
             width: 280px;
             background-color: #1a202c;
@@ -117,20 +127,14 @@
             font-size: 15px;
             transition: all 0.2s;
         }
-        .sidebar-item:hover {
-            background-color: #2d3748;
-            color: #ffffff;
-        }
+        .sidebar-item:hover { background-color: #2d3748; color: #ffffff; }
         .sidebar-item.active {
             background-color: #3182ce;
             color: #ffffff;
             font-weight: bold;
         }
         .sidebar-item.active.isterius-active { background-color: #7c3aed; }
-        .content {
-            flex-grow: 1;
-            padding: 50px 60px;
-        }
+        .content { flex-grow: 1; padding: 50px 60px; }
         .back-btn {
             color: #a0aec0;
             cursor: pointer;
@@ -180,7 +184,7 @@
             background: rgba(192, 132, 252, 0.12);
             border-color: rgba(192, 132, 252, 0.35);
         }
-        .latest-download-btn {
+        .latest-download-btn, .download-btn {
             background-color: #3182ce;
             color: #ffffff;
             padding: 5px 12px;
@@ -193,10 +197,22 @@
             cursor: pointer;
             font-family: inherit;
         }
-        .latest-download-btn:hover { background-color: #2b6cb0; }
-        .latest-download-btn.isterius-btn { background-color: #7c3aed; }
-        .latest-download-btn.isterius-btn:hover { background-color: #6d28d9; }
-        .latest-download-btn:active { transform: scale(0.95); }
+        .latest-download-btn:hover, .download-btn:hover { background-color: #2b6cb0; }
+        .latest-download-btn.isterius-btn,
+        .download-btn.isterius-btn { background-color: #7c3aed; }
+        .latest-download-btn.isterius-btn:hover,
+        .download-btn.isterius-btn:hover { background-color: #6d28d9; }
+        .latest-download-btn:active, .download-btn:active { transform: scale(0.95); }
+        .download-btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        .download-btn:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
         .version-list {
             display: flex;
             flex-direction: column;
@@ -264,35 +280,8 @@
             color: #fbbf24;
             border: 1px solid rgba(251, 191, 36, 0.4);
         }
-        .download-btn {
-            background-color: #3182ce;
-            color: #ffffff;
-            padding: 12px 24px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            transition: background-color 0.2s, transform 0.1s;
-            white-space: nowrap;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-        }
-        .download-btn:hover { background-color: #2b6cb0; }
-        .download-btn.isterius-btn { background-color: #7c3aed; }
-        .download-btn.isterius-btn:hover { background-color: #6d28d9; }
-        .download-btn:active { transform: scale(0.98); }
         .gen-section { display: none; }
         .gen-section.active { display: block; }
-        .empty-state {
-            color: #a0aec0;
-            font-size: 15px;
-            padding: 40px 20px;
-            text-align: center;
-            border: 1px dashed #2d3748;
-            border-radius: 8px;
-            background: #1a202c;
-        }
         @media (max-width: 800px) {
             .main-container { flex-direction: column; }
             .sidebar {
@@ -301,28 +290,41 @@
                 border-bottom: 1px solid #2d3748;
             }
             .content { padding: 30px 20px; }
+            .projects-grid { justify-content: center; }
         }
     </style>
 </head>
 <body>
+    <!-- PROJECTS -->
     <div id="projects-view">
         <h1 class="header-title">Projects</h1>
-        <div class="projects-grid">
-            <div class="project-card" onclick="showRucks()">
-                <img src="icon.png" alt="Rucks Logo">
-                <div class="project-name">Rucks</div>
-                <div class="project-desc">Official downloads for Rucks generations and releases.</div>
-                <span class="project-tag">View Downloads</span>
+
+        <div class="section-block">
+            <h2 class="section-heading launchers">Launchers</h2>
+            <div class="projects-grid">
+                <div class="project-card isterius" onclick="showIsterius()">
+                    <img src="isterius.ico" alt="Isterius Client Logo" onerror="this.src='icon.png'">
+                    <div class="project-name">Isterius Client</div>
+                    <div class="project-desc">Java Minecraft launcher for Windows PC and laptop. Offline play, installs to C:\IsteriusLauncher.</div>
+                    <span class="project-tag isterius-tag">View Downloads</span>
+                </div>
             </div>
-            <div class="project-card isterius" onclick="showIsterius()">
-                <img src="isterius.ico" alt="Isterius Client Logo" onerror="this.src='icon.png'">
-                <div class="project-name">Isterius Client</div>
-                <div class="project-desc">Java Minecraft launcher for Windows PC and laptop. Offline play, installs to C:\IsteriusLauncher.</div>
-                <span class="project-tag isterius-tag">View Downloads</span>
+        </div>
+
+        <div class="section-block">
+            <h2 class="section-heading">Mods / Plugins</h2>
+            <div class="projects-grid">
+                <div class="project-card" onclick="showRucks()">
+                    <img src="icon.png" alt="Rucks Logo">
+                    <div class="project-name">Rucks</div>
+                    <div class="project-desc">Official downloads for Rucks mod generations and releases.</div>
+                    <span class="project-tag">View Downloads</span>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- RUCKS -->
     <div id="rucks-view">
         <div class="main-container">
             <div class="sidebar">
@@ -446,52 +448,85 @@
         </div>
     </div>
 
+    <!-- ISTERIUS: Beta | Releases -->
     <div id="isterius-view">
         <div class="main-container">
             <div class="sidebar">
                 <div class="sidebar-title">Isterius Client</div>
-                <div class="sidebar-item active isterius-active" onclick="changeIsteriusSection('isterius-launchers', this)">Launchers</div>
-                <div class="sidebar-item" onclick="changeIsteriusSection('isterius-mods', this)">Mods / Plugins</div>
+                <div class="sidebar-item active isterius-active" onclick="changeIsteriusSection('isterius-releases', this)">Releases</div>
+                <div class="sidebar-item" onclick="changeIsteriusSection('isterius-beta', this)">Beta</div>
             </div>
             <div class="content">
                 <span class="back-btn" onclick="showProjects()">← Back to Projects</span>
 
-                <!-- LAUNCHERS -->
-                <div id="isterius-launchers" class="gen-section active">
+                <!-- RELEASES: 1.2, 1.1 -->
+                <div id="isterius-releases" class="gen-section active">
                     <div class="content-header-box">
-                        <h2 class="content-title">Isterius Client - Launchers</h2>
+                        <h2 class="content-title">Isterius Client - Releases</h2>
                         <div class="stats-info">
-                            Downloads: <span class="dl-count" id="isterius-total-downloads">0</span>
-                            Latest: <span>1.0.1</span>
+                            Total downloads: <span class="dl-count" id="isterius-total-downloads">—</span>
+                            Latest: <span>1.2</span>
                             <button type="button" class="latest-download-btn isterius-btn"
-                                onclick="trackDownload('1.0.1', 'https://www.mediafire.com/file/6nj16mpbcaoce0k/IsteriusClientSetup_1.0.1.exe/file')">
+                                data-version="1.2"
+                                onclick="trackDownload('1.2', 'https://www.mediafire.com/file/qqfe12ve96mlcoj/IsteriusClientSetup_1.2.exe/file', this)">
                                 Download
                             </button>
                         </div>
                     </div>
                     <div class="version-list">
-                        <!-- 1.0.1 Release -->
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="isterius.ico" alt="Isterius Icon" onerror="this.src='icon.png'">
                                 <div class="version-info">
                                     <p class="version-number">
-                                        1.0.1
+                                        1.2
                                         <span class="badge badge-release">Release</span>
                                     </p>
                                     <p class="version-desc">
-                                        Windows installer for PC and laptop. Installs to C:\IsteriusLauncher.
-                                        Session save, required username, AppData\.isterius game data. Recommended.
+                                        Latest Windows installer. Installs to C:\IsteriusLauncher.
+                                        Session save, 1.16.x multiplayer offline fix, AppData\.isterius.
                                     </p>
-                                    <p class="version-desc">Downloads: <span class="dl-count" id="dl-1-0-1">0</span></p>
+                                    <p class="version-desc">Downloads: <span class="dl-count" id="dl-1-2">—</span></p>
                                 </div>
                             </div>
                             <button type="button" class="download-btn isterius-btn"
-                                onclick="trackDownload('1.0.1', 'https://www.mediafire.com/file/6nj16mpbcaoce0k/IsteriusClientSetup_1.0.1.exe/file')">
+                                data-version="1.2"
+                                onclick="trackDownload('1.2', 'https://www.mediafire.com/file/qqfe12ve96mlcoj/IsteriusClientSetup_1.2.exe/file', this)">
                                 Download
                             </button>
                         </div>
-                        <!-- 1.0 Beta -->
+                        <div class="version-card">
+                            <div class="version-left">
+                                <img src="isterius.ico" alt="Isterius Icon" onerror="this.src='icon.png'">
+                                <div class="version-info">
+                                    <p class="version-number">
+                                        1.1
+                                        <span class="badge badge-release">Release</span>
+                                    </p>
+                                    <p class="version-desc">
+                                        Previous release. Prefer 1.2 if available.
+                                    </p>
+                                    <p class="version-desc">Downloads: <span class="dl-count" id="dl-1-1">—</span></p>
+                                </div>
+                            </div>
+                            <button type="button" class="download-btn isterius-btn"
+                                data-version="1.1"
+                                onclick="trackDownload('1.1', 'https://www.mediafire.com/file/6nj16mpbcaoce0k/IsteriusClientSetup_1.0.1.exe/file', this)">
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BETA: 1.0 -->
+                <div id="isterius-beta" class="gen-section">
+                    <div class="content-header-box">
+                        <h2 class="content-title">Isterius Client - Beta</h2>
+                        <div class="stats-info">
+                            Total downloads: <span class="dl-count" id="isterius-total-downloads-beta">—</span>
+                        </div>
+                    </div>
+                    <div class="version-list">
                         <div class="version-card">
                             <div class="version-left">
                                 <img src="isterius.ico" alt="Isterius Icon" onerror="this.src='icon.png'">
@@ -501,29 +536,17 @@
                                         <span class="badge badge-beta">Beta</span>
                                     </p>
                                     <p class="version-desc">
-                                        Early build with known issues. Prefer 1.0.1 Release unless you need this version.
+                                        Early beta with known issues. Prefer Releases 1.2 or 1.1.
                                     </p>
-                                    <p class="version-desc">Downloads: <span class="dl-count" id="dl-1-0">0</span></p>
+                                    <p class="version-desc">Downloads: <span class="dl-count" id="dl-1-0">—</span></p>
                                 </div>
                             </div>
                             <button type="button" class="download-btn isterius-btn"
-                                onclick="trackDownload('1.0', 'https://www.mediafire.com/file/s0e5ozdj3zpr6bb/IsteriusClientSetup.exe/file')">
+                                data-version="1.0"
+                                onclick="trackDownload('1.0', 'https://www.mediafire.com/file/s0e5ozdj3zpr6bb/IsteriusClientSetup.exe/file', this)">
                                 Download
                             </button>
                         </div>
-                    </div>
-                </div>
-
-                <!-- MODS / PLUGINS -->
-                <div id="isterius-mods" class="gen-section">
-                    <div class="content-header-box">
-                        <h2 class="content-title">Isterius Client - Mods / Plugins</h2>
-                        <div class="stats-info">
-                            Downloads: <span class="dl-count" id="isterius-mods-downloads">0</span>
-                        </div>
-                    </div>
-                    <div class="empty-state">
-                        No mods or plugins published yet. Check back later.
                     </div>
                 </div>
             </div>
@@ -531,113 +554,155 @@
     </div>
 
     <script>
-        const FIREBASE_DB = "https://isterius-default-rtdb.firebaseio.com";
-        const STATS_PATH = "/download_stats/isterius";
+        // Each version has its OWN counter key — downloading 1.2 never changes 1.0 or 1.1
+        const COUNT_NS = "wazindevs";
+        const COUNT_KEYS = {
+            "1.0": "isterius_rel_1_0",
+            "1.1": "isterius_rel_1_1",
+            "1.2": "isterius_rel_1_2"
+        };
+        const COUNT_EL = {
+            "1.0": "dl-1-0",
+            "1.1": "dl-1-1",
+            "1.2": "dl-1-2"
+        };
+        const COUNT_BASE = "https://api.countapi.xyz";
+        const LOCAL_STORE = "isterius_dl_counters_v2";
 
         function hideAllViews() {
-            document.getElementById('projects-view').style.display = 'none';
-            document.getElementById('rucks-view').style.display = 'none';
-            document.getElementById('isterius-view').style.display = 'none';
+            document.getElementById("projects-view").style.display = "none";
+            document.getElementById("rucks-view").style.display = "none";
+            document.getElementById("isterius-view").style.display = "none";
         }
         function showProjects() {
             hideAllViews();
-            document.getElementById('projects-view').style.display = 'flex';
+            document.getElementById("projects-view").style.display = "flex";
         }
         function showRucks() {
             hideAllViews();
-            document.getElementById('rucks-view').style.display = 'block';
+            document.getElementById("rucks-view").style.display = "block";
         }
         function showIsterius() {
             hideAllViews();
-            document.getElementById('isterius-view').style.display = 'block';
-            refreshDownloadStats();
+            document.getElementById("isterius-view").style.display = "block";
+            refreshAllCounts();
         }
         function changeGeneration(genId, element) {
-            const root = document.getElementById('rucks-view');
-            root.querySelectorAll('.gen-section').forEach(sec => sec.classList.remove('active'));
-            root.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
-            document.getElementById(genId).classList.add('active');
-            element.classList.add('active');
+            const root = document.getElementById("rucks-view");
+            root.querySelectorAll(".gen-section").forEach(sec => sec.classList.remove("active"));
+            root.querySelectorAll(".sidebar-item").forEach(item => item.classList.remove("active"));
+            document.getElementById(genId).classList.add("active");
+            element.classList.add("active");
         }
         function changeIsteriusSection(sectionId, element) {
-            const root = document.getElementById('isterius-view');
-            root.querySelectorAll('.gen-section').forEach(sec => sec.classList.remove('active'));
-            root.querySelectorAll('.sidebar-item').forEach(item => {
-                item.classList.remove('active');
-                item.classList.remove('isterius-active');
+            const root = document.getElementById("isterius-view");
+            root.querySelectorAll(".gen-section").forEach(sec => sec.classList.remove("active"));
+            root.querySelectorAll(".sidebar-item").forEach(item => {
+                item.classList.remove("active");
+                item.classList.remove("isterius-active");
             });
-            document.getElementById(sectionId).classList.add('active');
-            element.classList.add('active');
-            element.classList.add('isterius-active');
+            document.getElementById(sectionId).classList.add("active");
+            element.classList.add("active");
+            element.classList.add("isterius-active");
         }
 
-        function versionKey(ver) {
-            return String(ver).replace(/\./g, '_');
+        function setText(id, value) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
         }
 
-        function applyStats(stats) {
-            stats = stats || {};
-            const v101 = stats['1_0_1'] || 0;
-            const v10 = stats['1_0'] || 0;
-            const total = (stats.total != null) ? stats.total : (v101 + v10);
-            const elTotal = document.getElementById('isterius-total-downloads');
-            const el101 = document.getElementById('dl-1-0-1');
-            const el10 = document.getElementById('dl-1-0');
-            if (elTotal) elTotal.textContent = total;
-            if (el101) el101.textContent = v101;
-            if (el10) el10.textContent = v10;
-        }
-
-        async function refreshDownloadStats() {
+        function readLocal() {
             try {
-                const res = await fetch(FIREBASE_DB + STATS_PATH + ".json", { cache: "no-store" });
-                if (!res.ok) throw new Error("fetch failed");
-                const data = await res.json();
-                applyStats(data || {});
-            } catch (e) {
-                // Fallback: localStorage only
-                try {
-                    const local = JSON.parse(localStorage.getItem("isterius_dl_stats") || "{}");
-                    applyStats(local);
-                } catch (_) {
-                    applyStats({});
-                }
-            }
-        }
-
-        async function trackDownload(version, url) {
-            const key = versionKey(version);
-            let stats = {};
-            try {
-                const res = await fetch(FIREBASE_DB + STATS_PATH + ".json", { cache: "no-store" });
-                if (res.ok) stats = (await res.json()) || {};
+                return JSON.parse(localStorage.getItem(LOCAL_STORE) || "{}");
             } catch (_) {
-                try {
-                    stats = JSON.parse(localStorage.getItem("isterius_dl_stats") || "{}");
-                } catch (__) {
-                    stats = {};
-                }
+                return {};
             }
-            stats[key] = (stats[key] || 0) + 1;
-            stats.total = (stats.total || 0) + 1;
-            applyStats(stats);
+        }
+        function writeLocal(obj) {
             try {
-                localStorage.setItem("isterius_dl_stats", JSON.stringify(stats));
+                localStorage.setItem(LOCAL_STORE, JSON.stringify(obj));
             } catch (_) {}
+        }
+
+        async function apiGet(key) {
+            const res = await fetch(COUNT_BASE + "/get/" + COUNT_NS + "/" + key, { cache: "no-store" });
+            if (!res.ok) throw new Error("get");
+            const data = await res.json();
+            if (typeof data.value !== "number") throw new Error("bad");
+            return data.value;
+        }
+
+        async function apiHit(key) {
+            const res = await fetch(COUNT_BASE + "/hit/" + COUNT_NS + "/" + key, { cache: "no-store" });
+            if (!res.ok) throw new Error("hit");
+            const data = await res.json();
+            if (typeof data.value !== "number") throw new Error("bad");
+            return data.value;
+        }
+
+        async function getCount(version) {
+            const key = COUNT_KEYS[version];
+            if (!key) return 0;
             try {
-                await fetch(FIREBASE_DB + STATS_PATH + ".json", {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(stats)
-                });
+                return await apiGet(key);
+            } catch (_) {
+                const local = readLocal();
+                return local[key] || 0;
+            }
+        }
+
+        async function hitCount(version) {
+            const key = COUNT_KEYS[version];
+            if (!key) return 0;
+            // Increment ONLY this version's key
+            try {
+                const value = await apiHit(key);
+                const local = readLocal();
+                local[key] = value;
+                writeLocal(local);
+                return value;
+            } catch (_) {
+                const local = readLocal();
+                local[key] = (local[key] || 0) + 1;
+                writeLocal(local);
+                return local[key];
+            }
+        }
+
+        async function refreshAllCounts() {
+            const versions = ["1.0", "1.1", "1.2"];
+            const values = {};
+            for (const v of versions) {
+                values[v] = await getCount(v);
+                setText(COUNT_EL[v], values[v]);
+            }
+            const total = values["1.0"] + values["1.1"] + values["1.2"];
+            setText("isterius-total-downloads", total);
+            setText("isterius-total-downloads-beta", total);
+        }
+
+        async function trackDownload(version, url, btn) {
+            if (btn) btn.disabled = true;
+            try {
+                // Only hits THIS version — never decrements another
+                const newVal = await hitCount(version);
+                setText(COUNT_EL[version], newVal);
+                // Refresh others without hitting them (get only)
+                const others = ["1.0", "1.1", "1.2"].filter(v => v !== version);
+                let total = newVal;
+                for (const v of others) {
+                    const n = await getCount(v);
+                    setText(COUNT_EL[v], n);
+                    total += n;
+                }
+                setText("isterius-total-downloads", total);
+                setText("isterius-total-downloads-beta", total);
             } catch (_) {}
+            if (btn) {
+                setTimeout(function () { btn.disabled = false; }, 600);
+            }
             window.open(url, "_blank");
         }
-
-        // Preload counters if page reloaded on isterius (rare)
-        document.addEventListener("DOMContentLoaded", function () {
-            // nothing until user opens Isterius
-        });
     </script>
 </body>
 </html>
