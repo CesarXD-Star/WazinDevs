@@ -459,7 +459,7 @@
             <div class="content">
                 <span class="back-btn" onclick="showProjects()">← Back to Projects</span>
 
-                <!-- RELEASES: 1.2, 1.1 -->
+                <!-- RELEASES: 1.2 -->
                 <div id="isterius-releases" class="gen-section active">
                     <div class="content-header-box">
                         <h2 class="content-title">Isterius Client - Releases</h2>
@@ -495,30 +495,10 @@
                                 Download
                             </button>
                         </div>
-                        <div class="version-card">
-                            <div class="version-left">
-                                <img src="isterius.ico" alt="Isterius Icon" onerror="this.src='icon.png'">
-                                <div class="version-info">
-                                    <p class="version-number">
-                                        1.1
-                                        <span class="badge badge-release">Release</span>
-                                    </p>
-                                    <p class="version-desc">
-                                        Previous release. Prefer 1.2 if available.
-                                    </p>
-                                    <p class="version-desc">Downloads: <span class="dl-count" id="dl-1-1">—</span></p>
-                                </div>
-                            </div>
-                            <button type="button" class="download-btn isterius-btn"
-                                data-version="1.1"
-                                onclick="trackDownload('1.1', 'https://www.mediafire.com/file/6nj16mpbcaoce0k/IsteriusClientSetup_1.0.1.exe/file', this)">
-                                Download
-                            </button>
-                        </div>
                     </div>
                 </div>
 
-                <!-- BETA: 1.0 -->
+                <!-- BETA: 1.1, 1.0 -->
                 <div id="isterius-beta" class="gen-section">
                     <div class="content-header-box">
                         <h2 class="content-title">Isterius Client - Beta</h2>
@@ -532,11 +512,31 @@
                                 <img src="isterius.ico" alt="Isterius Icon" onerror="this.src='icon.png'">
                                 <div class="version-info">
                                     <p class="version-number">
+                                        1.1
+                                        <span class="badge badge-beta">Beta</span>
+                                    </p>
+                                    <p class="version-desc">
+                                        Beta build. Prefer Release 1.2 if available.
+                                    </p>
+                                    <p class="version-desc">Downloads: <span class="dl-count" id="dl-1-1">—</span></p>
+                                </div>
+                            </div>
+                            <button type="button" class="download-btn isterius-btn"
+                                data-version="1.1"
+                                onclick="trackDownload('1.1', 'https://www.mediafire.com/file/6nj16mpbcaoce0k/IsteriusClientSetup_1.0.1.exe/file', this)">
+                                Download
+                            </button>
+                        </div>
+                        <div class="version-card">
+                            <div class="version-left">
+                                <img src="isterius.ico" alt="Isterius Icon" onerror="this.src='icon.png'">
+                                <div class="version-info">
+                                    <p class="version-number">
                                         1.0
                                         <span class="badge badge-beta">Beta</span>
                                     </p>
                                     <p class="version-desc">
-                                        Early beta with known issues. Prefer Releases 1.2 or 1.1.
+                                        Early beta with known issues. Prefer Release 1.2.
                                     </p>
                                     <p class="version-desc">Downloads: <span class="dl-count" id="dl-1-0">—</span></p>
                                 </div>
